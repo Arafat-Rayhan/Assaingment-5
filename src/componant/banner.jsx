@@ -3,7 +3,7 @@ import bennerImg from '../assets/banner-stack.png'
 function  Banner() {
   return (
     <>
-    <div  className='gap-32 m-0 p-0 flex justify-between items-center w-[1216px] h-[4020] px-[32px]
+    <div  className='gap-32 m-0 p-0 flex justify-between items-center w-[1216px] h-auto px-[32px]
     max-[768px]:flex max-[768px]:flex-col max-[768px]:gap-4'>
       <div className='py-[24px]  max-[768px]:flex max-[768px]:flex-col'>
   

@@ -1,5 +1,5 @@
 import Card from './card.jsx'
-import {use,Suspense} from "react"
+import { use } from 'react'
 
 export default function Cardlist({ onAddToCard,selectedItems,usersPromise }) {
   

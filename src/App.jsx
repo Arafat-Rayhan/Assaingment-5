@@ -38,7 +38,7 @@ const App = () => {
   return (
     <div className='w-full max-w-[1280px] mx-auto grid grid-cols-[1fr]  '>
       <Navbar />
-      <div className='pt-[96px] gap-[112px] '>
+      <div className='pt-0 gap-[112px] '>
       <Benner/>
       <div className='max-[768px]:text-center  '>
            <Heading > </Heading>
