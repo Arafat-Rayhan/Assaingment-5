@@ -2,24 +2,22 @@ import Navbar from './componant/navbar'
 import Cardlist from './componant/cardlist'
 import YourStack from './componant/YourStack'
 import Benner from './componant/banner'
-import { useEffect, useState } from 'react'
+import { useState,Suspense } from 'react'
 import Heading from './componant/headingOfList'
 import Footer from './componant/footer'
 import { toast } from 'react-toastify'
 
-const App = () => {
-  const [cards, setCards] = useState([])
-  const [selectedItems, setSelectedItems] = useState([])
-
-  useEffect(() => {
-    const loadCards = async () => {
+const loadCards = async () => {
       const response = await fetch('/Data.json')
       const data = await response.json()
-      setCards(data)
-    }
+      return data
+     }
 
-    loadCards()
-  }, [])
+    const usersPromise=loadCards()
+
+const App = () => {
+  const [selectedItems, setSelectedItems] = useState([])
+ 
 
   const hendelAddToCard = (card) => {
     setSelectedItems((currentItems) => [...currentItems, card]);
@@ -37,8 +35,6 @@ const App = () => {
 
   
 
-  
-
   return (
     <div className='w-full max-w-[1280px] mx-auto grid grid-cols-[1fr]  '>
       <Navbar />
@@ -47,8 +43,10 @@ const App = () => {
       <div className='max-[768px]:text-center  '>
            <Heading > </Heading>
           <div className='flex justify-between items-start w-[1216px] pt-[40px] 
-           max-[390px]:grid max-[390px]:grid-cols-[1fr] max-[768px]:justify-items-center  '>
-                <Cardlist cards={cards} onAddToCard={hendelAddToCard} selectedItems={selectedItems} />
+           max-[390px]:grid max-[390px]:grid-cols-[1fr] max-[768px]:justify-items-center  '>  <Suspense fallback={ <p>loding.........</p>}>
+
+                <Cardlist onAddToCard={hendelAddToCard} usersPromise={usersPromise}  selectedItems={selectedItems} />
+           </Suspense>
                 <YourStack cardItems={selectedItems} onRemoveFromecard={handelRemoveFromCard} allRemove={allRemove} />
         </div>
       </div>
